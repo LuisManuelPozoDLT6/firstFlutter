@@ -17,36 +17,39 @@ class _CustomeCarouselState extends State<CustomeCarousel> {
   int _currenIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CarouselSlider(
-          items: widget.itemList, 
-          options: CarouselOptions(
-            height: widget.carouselHeight,
-            autoPlay: true,
-            onPageChanged: (index, reason) => {
-              setState(() {
-                _currenIndex = index;
-              })
-            },
+    return Container(
+      padding: const EdgeInsets.only(top: 20.0),
+      child: Column(
+        children: [
+          CarouselSlider(
+            items: widget.itemList, 
+            options: CarouselOptions(
+              height: widget.carouselHeight,
+              autoPlay: true,
+              onPageChanged: (index, reason) => {
+                setState(() {
+                  _currenIndex = index;
+                })
+              },
+            )
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: widget.itemList.map((item) {
+              int index = widget.itemList.indexOf(item);
+              return Container(
+                width: widget.indicatorWidth,
+                height: widget.indicatorHeight,
+                margin: const EdgeInsets.symmetric(horizontal: 3, vertical: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: _currenIndex == index ? ColorsApp.successColor : ColorsApp.secondaryColor
+                ),
+              );
+            }).toList(),
           )
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: widget.itemList.map((item) {
-            int index = widget.itemList.indexOf(item);
-            return Container(
-              width: widget.indicatorWidth,
-              height: widget.indicatorHeight,
-              margin: const EdgeInsets.symmetric(horizontal: 3, vertical: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: _currenIndex == index ? ColorsApp.successColor : ColorsApp.secondaryColor
-              ),
-            );
-          }).toList(),
-        )
-      ],
+        ],
+      ),
     );
   }
 }

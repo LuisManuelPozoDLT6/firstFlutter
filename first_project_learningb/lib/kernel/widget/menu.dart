@@ -3,7 +3,6 @@ import 'package:first_project_learningb/config/navigation/home_navigation.dart';
 import 'package:first_project_learningb/config/navigation/news_navigation.dart';
 import 'package:first_project_learningb/config/navigation/shop_navigation.dart';
 import 'package:first_project_learningb/kernel/widget/custom_bottom_navigation_tab.dart';
-import 'package:first_project_learningb/modules/shop/adapters/screens/shop.dart';
 import 'package:flutter/material.dart';
 
 

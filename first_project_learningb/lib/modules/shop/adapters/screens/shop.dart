@@ -7,6 +7,16 @@ class Shop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Map<String, dynamic> item = {
+      'title': 'Samsung Galaxy S23 ULTRA', 'description':'Nuevo ¡Galaxy! S23 ULTRA, descubre todas sus funciones', 'initialRating':4.5, 'imageUri':'assets/images/logo-utez.png'
+    };
+    final Map<String, dynamic> item2 = {
+      'title': 'iPhone 15 Pro Max', 'description':'Nuevo ¡IpHONE 15 PRO MAX! S23 ULTRA, descubre todas sus funciones', 'initialRating':4.5, 'imageUri':'assets/images/iphone15.jpg'
+    };
+    final Map<String, dynamic> item3 = {
+      'title': 'XIAMI', 'description':'Nuevo ¡XIAOMI! S23 ULTRA, descubre todas sus funciones', 'initialRating':4.5, 'imageUri':'assets/images/iphone15.jpg'
+    };
+    final List items = [item, item2, item3];
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tienda'),
@@ -15,14 +25,17 @@ class Shop extends StatelessWidget {
         ),
         body: GridView.count(
           primary: false,
-          padding: const EdgeInsets.all(20),
-          crossAxisSpacing: 10,
+          padding: const EdgeInsets.all(8),
+          crossAxisSpacing: 8,
           mainAxisSpacing: 10,
           crossAxisCount: 2,
-          children: const <Widget>[
-              ContainerShop(),
-              ContainerShop()
-          ],
+          children: List.generate(items.length, (index){
+            return ContainerShop( 
+                title: items[index]['title'],
+                description: items[index]['description'],
+                initialRating: items[index]['initialRating'] ,
+                imageUri: items[index]['imageUri']);
+          })
         ),
       );
   }
