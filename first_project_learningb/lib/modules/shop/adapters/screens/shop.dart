@@ -1,4 +1,5 @@
 import 'package:first_project_learningb/kernel/colors/colors_app.dart';
+import 'package:first_project_learningb/modules/shop/adapters/screens/widgets/access_shop_cart.dart';
 import 'package:first_project_learningb/modules/shop/adapters/screens/widgets/container_shop.dart';
 import 'package:flutter/material.dart';
 
@@ -8,13 +9,13 @@ class Shop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Map<String, dynamic> item = {
-      'title': 'Samsung Galaxy S23 ULTRA', 'description':'Nuevo ¡Galaxy! S23 ULTRA, descubre todas sus funciones', 'initialRating':4.5, 'imageUri':'assets/images/logo-utez.png'
+      'title': 'Samsung Galaxy S23 ULTRA', 'description':'Nuevo ¡Galaxy! S23 ULTRA, descubre todas sus funciones', 'initialRating':4.5, 'imageUri':'assets/images/logo-utez.png', 'price': 22000.00
     };
     final Map<String, dynamic> item2 = {
-      'title': 'iPhone 15 Pro Max', 'description':'Nuevo ¡IpHONE 15 PRO MAX! S23 ULTRA, descubre todas sus funciones', 'initialRating':4.5, 'imageUri':'assets/images/iphone15.jpg'
+      'title': 'iPhone 15 Pro Max', 'description':'Nuevo ¡IpHONE 15 PRO MAX! S23 ULTRA, descubre todas sus funciones', 'initialRating':4.5, 'imageUri':'assets/images/iphone15.jpg', 'price': 19000.00
     };
     final Map<String, dynamic> item3 = {
-      'title': 'XIAMI', 'description':'Nuevo ¡XIAOMI! S23 ULTRA, descubre todas sus funciones', 'initialRating':4.5, 'imageUri':'assets/images/iphone15.jpg'
+      'title': 'XIAMI', 'description':'Nuevo ¡XIAOMI! S23 ULTRA, descubre todas sus funciones', 'initialRating':4.5, 'imageUri':'assets/images/iphone15.jpg', 'price': 20000.00
     };
     final List items = [item, item2, item3];
     return Scaffold(
@@ -22,6 +23,9 @@ class Shop extends StatelessWidget {
         title: const Text('Tienda'),
         backgroundColor: ColorsApp.primaryColor,
         foregroundColor: Colors.white,
+        actions: const [
+          AccessShopCart()
+        ],
         ),
         body: GridView.count(
           primary: false,
@@ -34,10 +38,12 @@ class Shop extends StatelessWidget {
                 title: items[index]['title'],
                 description: items[index]['description'],
                 initialRating: items[index]['initialRating'] ,
-                imageUri: items[index]['imageUri']);
+                imageUri: items[index]['imageUri'],
+                price: items[index]['price']);
           })
         ),
       );
   }
   
 }
+

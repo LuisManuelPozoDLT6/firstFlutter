@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ContainerShop extends StatelessWidget {
-  const ContainerShop({Key ? key, required this.title, required this.description, required this.initialRating, required this.imageUri});
+  const ContainerShop({Key ? key, required this.title, required this.description, required this.initialRating, required this.imageUri, required this.price});
   final String title;
   final String description;
   final double initialRating;
   final String imageUri;
+  final double price;
 
   @override
   Widget build(BuildContext context) {
@@ -26,26 +27,31 @@ class ContainerShop extends StatelessWidget {
                   width: 64,
                   child: Text(
                     title,
-                    style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
                   ),
                 ),
                 const Spacer(),
-                RatingBar.builder(
-                  initialRating: initialRating,
-                  minRating: 1,
-                  direction: Axis.horizontal,
-                  allowHalfRating: true,
-                  itemCount: 5,
-                  itemSize: 8,
-                  itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder: (context, _) => const Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                  ),
-                  onRatingUpdate: (rating) {
-                    print(rating);
-                  },
-                  ignoreGestures: true,
+                Column(
+                  children: [
+                    Text('\$$price',  style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold),),
+                    RatingBar.builder(
+                      initialRating: initialRating,
+                      minRating: 1,
+                      direction: Axis.horizontal,
+                      allowHalfRating: true,
+                      itemCount: 5,
+                      itemSize: 8,
+                      itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                      itemBuilder: (context, _) => const Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      onRatingUpdate: (rating) {
+                        print(rating);
+                      },
+                      ignoreGestures: true,
+                    ),
+                  ],
                 )
               ],
             ),
@@ -62,7 +68,7 @@ class ContainerShop extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/shop/detail-shop', arguments: {'title': title, 'description': description, 'initialRating': initialRating, 'imageUri': imageUri});
+              Navigator.pushNamed(context, '/shop/detail-shop', arguments: {'title': title, 'description': description, 'initialRating': initialRating, 'imageUri': imageUri, 'price':price});
             },
             style: OutlinedButton.styleFrom(
               foregroundColor: ColorsApp.successColor,

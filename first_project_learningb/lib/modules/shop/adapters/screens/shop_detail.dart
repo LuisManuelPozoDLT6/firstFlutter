@@ -15,6 +15,7 @@ class ShopDetail extends StatelessWidget{
     final description = arguments['description'] ?? '';
     final initialRating = arguments['initialRating'] ?? 0.0;
     final imageUri = arguments['imageUri'] ?? 'assets/images/logo-utez.png';
+    final price = arguments['price'] ?? 'error';
     double widthImage = MediaQuery.of(context).size.width;
     return  Scaffold(
       appBar: AppBar(
@@ -32,26 +33,31 @@ class ShopDetail extends StatelessWidget{
                 children: [
                   SizedBox(
                     width: 250,
-                    child: Text(title, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    child: Text(title, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: ColorsApp.primaryColor),
                     ),
                   ),
                   const Spacer(),
-                  RatingBar.builder(
-                    initialRating: initialRating,
-                    minRating: 1,
-                    direction: Axis.horizontal,
-                    allowHalfRating: true,
-                    itemCount: 5,
-                    itemSize: 16,
-                    itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-                    itemBuilder: (context, _) => const Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                    ),
-                    onRatingUpdate: (rating) {
-                      print(rating);
-                    },
-                    ignoreGestures: true,
+                  Column(
+                    children: [
+                      Text('\$$price',  style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: ColorsApp.successColor),),
+                      RatingBar.builder(
+                        initialRating: initialRating,
+                        minRating: 1,
+                        direction: Axis.horizontal,
+                        allowHalfRating: true,
+                        itemCount: 5,
+                        itemSize: 16,
+                        itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        itemBuilder: (context, _) => const Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        ),
+                        onRatingUpdate: (rating) {
+                          print(rating);
+                        },
+                        ignoreGestures: true,
+                      ),
+                    ],
                   )
                 ],
               ),
@@ -63,7 +69,9 @@ class ShopDetail extends StatelessWidget{
         ),
       ),
       floatingActionButton: ElevatedButton(
-        onPressed: (){}, 
+        onPressed: (){
+          
+        }, 
         child: Text('Agregar al carrito'),
         style: OutlinedButton.styleFrom(
               foregroundColor: ColorsApp.successColor,
