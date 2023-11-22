@@ -1,24 +1,40 @@
 import 'package:first_project_learningb/kernel/colors/colors_app.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class ShopCart extends StatelessWidget{
+
+class ShopCart extends StatefulWidget{
   const ShopCart({super.key});
 
   @override
+  State<ShopCart> createState() => _ShopCartState();
+}
+
+class _ShopCartState extends State<ShopCart> {
+  @override
+  
+  void initState() async {
+    super.initState();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.get("counter");
+  }
+
   Widget build(BuildContext context) {
-    return const Scaffold(
+    final List items = ['item, item2, item3'];
+    return 
+     const Scaffold(
       body: Column(
         children: [
           SizedBox(height: 32,),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
-            child: ListCartShop(),
+            child: 
+             ListCartShop(),
           ),
         ],
       ),
     );
   }
-
 }
 
 class ListCartShop extends StatelessWidget{

@@ -1,6 +1,7 @@
 import 'package:first_project_learningb/kernel/colors/colors_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ShopDetail extends StatelessWidget{
   const ShopDetail({super.key});
@@ -69,8 +70,9 @@ class ShopDetail extends StatelessWidget{
         ),
       ),
       floatingActionButton: ElevatedButton(
-        onPressed: (){
-          
+        onPressed: ()  {
+          final Map<String, Object> values = <String, Object>{'counter': title, 'title': title, 'description':description, 'initialRating': initialRating, 'imageUri':imageUri, 'price': imageUri};
+          SharedPreferences.setMockInitialValues(values);
         }, 
         child: Text('Agregar al carrito'),
         style: OutlinedButton.styleFrom(
